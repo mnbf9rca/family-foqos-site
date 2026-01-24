@@ -1,0 +1,125 @@
+---
+// How It Works - 3 steps for families
+
+const steps = [
+  {
+    number: "01",
+    title: "Set up Parent Mode",
+    description: "Download Family Foqos and enable Parent Mode. This gives you full control over all profiles and family settings. Set a passcode to protect your parent controls.",
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+    color: "iris"
+  },
+  {
+    number: "02",
+    title: "Invite Family via iCloud",
+    description: "Use Apple's Family Sharing to invite your children. Family Foqos syncs seamlessly through CloudKit—no separate accounts or passwords to manage.",
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`,
+    color: "amber"
+  },
+  {
+    number: "03",
+    title: "Create Locked Profiles",
+    description: "Build focus profiles for each child—homework time, bedtime, screen-free dinner. Lock them with your parent passcode so only you can make changes.",
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>`,
+    color: "mint"
+  }
+];
+
+const colorMap = {
+  iris: {
+    gradient: "from-iris to-iris-dim",
+    bg: "bg-iris/10",
+    text: "text-iris",
+    border: "border-iris/30",
+    glow: "shadow-iris/30"
+  },
+  amber: {
+    gradient: "from-amber to-amber-dim",
+    bg: "bg-amber/10",
+    text: "text-amber",
+    border: "border-amber/30",
+    glow: "shadow-amber/30"
+  },
+  mint: {
+    gradient: "from-mint to-sky",
+    bg: "bg-mint/10",
+    text: "text-mint",
+    border: "border-mint/30",
+    glow: "shadow-mint/30"
+  }
+};
+---
+
+<section id="how-it-works" class="py-section relative overflow-hidden">
+  <!-- Background elements -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Connecting line -->
+    <div class="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-elevated to-transparent hidden lg:block"></div>
+  </div>
+
+  <div class="container relative z-10">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-20">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/50 border border-elevated mb-6">
+        <span class="text-sm text-amber font-medium">Getting Started</span>
+      </div>
+      <h2 class="reveal heading-lg mb-6">
+        Focus for your family in<br />
+        <span class="gradient-text-warm">three simple steps</span>
+      </h2>
+      <p class="reveal body-lg text-text-secondary">
+        Setting up Family Foqos takes just minutes. No complicated setup,
+        no external accounts—just your Apple ID and Family Sharing.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
+      {steps.map((step, index) => {
+        const colors = colorMap[step.color as keyof typeof colorMap];
+        return (
+          <div class="reveal relative" style={`transition-delay: ${index * 150}ms;`}>
+            <!-- Step card -->
+            <div class={`relative h-full p-8 rounded-3xl bg-gradient-to-b from-surface/80 to-deep/80 border ${colors.border} backdrop-blur-sm`}>
+              <!-- Step number -->
+              <div class={`absolute -top-6 left-8 w-12 h-12 rounded-2xl bg-gradient-to-br ${colors.gradient} flex items-center justify-center shadow-lg ${colors.glow}`}>
+                <span class="text-lg font-bold text-void">{step.number}</span>
+              </div>
+
+              <!-- Icon -->
+              <div class={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center mt-4 mb-6`}>
+                <div class={`w-8 h-8 ${colors.text}`} set:html={step.icon} />
+              </div>
+
+              <!-- Content -->
+              <h3 class="heading-md mb-4">{step.title}</h3>
+              <p class="text-text-secondary leading-relaxed">{step.description}</p>
+
+              <!-- Connector arrow (not on last item) -->
+              {index < steps.length - 1 && (
+                <div class="hidden lg:block absolute top-1/2 -right-6 transform -translate-y-1/2 z-10">
+                  <svg class="w-8 h-8 text-elevated" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="reveal text-center mt-16">
+      <div class="inline-flex flex-col sm:flex-row gap-4 items-center">
+        <p class="text-text-secondary">Ready to bring focus to your family?</p>
+        <a href="#waitlist" class="btn-primary inline-flex items-center gap-2 group">
+          <span>Join the Waitlist</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

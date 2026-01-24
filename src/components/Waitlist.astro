@@ -1,0 +1,88 @@
+---
+// Waitlist / Coming Soon CTA section
+---
+
+<section id="waitlist" class="py-section relative overflow-hidden">
+  <!-- Background elements -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Central glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-br from-iris/20 via-rose/10 to-amber/10 rounded-full blur-3xl opacity-60"></div>
+
+    <!-- Decorative rings -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-iris/10 rounded-full"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-iris/5 rounded-full"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-iris/[0.02] rounded-full"></div>
+  </div>
+
+  <div class="container relative z-10">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Badge -->
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/80 border border-elevated mb-8 backdrop-blur-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-amber"></span>
+        </span>
+        <span class="text-sm text-text-secondary">Coming Soon to the App Store</span>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="reveal heading-lg mb-6">
+        Ready to bring focus<br />
+        <span class="gradient-text-warm">to your family?</span>
+      </h2>
+
+      <p class="reveal body-lg text-text-secondary mb-10 max-w-lg mx-auto">
+        Family Foqos is currently in development. Join the waitlist to be notified
+        when we launch on the App Store.
+      </p>
+
+      <!-- Email signup form -->
+      <div class="reveal max-w-md mx-auto mb-8">
+        <form class="flex flex-col sm:flex-row gap-3" action="#" method="POST">
+          <div class="flex-1 relative">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              class="w-full px-5 py-4 bg-surface/80 border border-elevated rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-iris transition-colors backdrop-blur-sm"
+            />
+          </div>
+          <button type="submit" class="btn-primary whitespace-nowrap">
+            <span>Notify Me</span>
+          </button>
+        </form>
+        <p class="text-text-muted text-xs mt-3">
+          We'll only email you once when we launch. No spam, ever.
+        </p>
+      </div>
+
+      <!-- Alternative CTAs -->
+      <div class="reveal flex flex-wrap items-center justify-center gap-4 text-sm">
+        <a
+          href="https://github.com/mnbf9rca/family-foqos"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-text-secondary hover:text-text transition-colors"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>Star on GitHub</span>
+        </a>
+        <span class="text-text-muted">•</span>
+        <a
+          href="https://github.com/mnbf9rca/family-foqos/discussions"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-text-secondary hover:text-text transition-colors"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+          <span>Join Discussions</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
