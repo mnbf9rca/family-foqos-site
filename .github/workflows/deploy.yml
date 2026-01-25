@@ -55,7 +55,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: us-east-1
+          aws-region: eu-west-2
 
       - name: Deploy to S3 (staging)
         run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET_STAGING }} --delete
@@ -82,7 +82,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ vars.AWS_ROLE_ARN }}
-          aws-region: us-east-1
+          aws-region: eu-west-2
 
       - name: Deploy to S3 (production)
         run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET }} --delete

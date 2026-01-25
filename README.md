@@ -84,7 +84,7 @@ Place app screenshots in `public/screenshots/`:
       "Resource": "arn:aws:s3:::family-foqos-app/*",
       "Condition": {
         "StringEquals": {
-          "AWS:SourceArn": "arn:aws:cloudfront::ACCOUNT_ID:distribution/DISTRIBUTION_ID"
+          "AWS:SourceArn": "arn:aws:cloudfront::598131871882:distribution/DISTRIBUTION_ID"
         }
       }
     }
@@ -94,7 +94,7 @@ Place app screenshots in `public/screenshots/`:
 
 ### SSL Certificate (ACM)
 
-1. Request a certificate in ACM (us-east-1 region for CloudFront)
+1. Request a certificate in ACM (eu-west-2 region for CloudFront)
 2. Add domain names: `family-foqos.app`, `www.family-foqos.app`
 3. Validate via DNS (add CNAME records to Route 53)
 
@@ -127,7 +127,7 @@ In AWS IAM Console → Identity providers → Add provider:
 
 #### 2. Create IAM Role
 
-Create an IAM role with the following trust policy (replace `ACCOUNT_ID` and `your-org/your-repo`):
+Create an IAM role with the following trust policy:
 
 ```json
 {
@@ -136,7 +136,7 @@ Create an IAM role with the following trust policy (replace `ACCOUNT_ID` and `yo
     {
       "Effect": "Allow",
       "Principal": {
-        "Federated": "arn:aws:iam::ACCOUNT_ID:oidc-provider/token.actions.githubusercontent.com"
+        "Federated": "arn:aws:iam::598131871882:oidc-provider/token.actions.githubusercontent.com"
       },
       "Action": "sts:AssumeRoleWithWebIdentity",
       "Condition": {
@@ -144,7 +144,7 @@ Create an IAM role with the following trust policy (replace `ACCOUNT_ID` and `yo
           "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
         },
         "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:your-org/your-repo:*"
+          "token.actions.githubusercontent.com:sub": "repo:mnbf9rca/family-foqos-site:*"
         }
       }
     }
@@ -177,8 +177,8 @@ Attach this permissions policy to the role (includes both production and staging
       "Effect": "Allow",
       "Action": "cloudfront:CreateInvalidation",
       "Resource": [
-        "arn:aws:cloudfront::ACCOUNT_ID:distribution/PRODUCTION_DISTRIBUTION_ID",
-        "arn:aws:cloudfront::ACCOUNT_ID:distribution/STAGING_DISTRIBUTION_ID"
+        "arn:aws:cloudfront::598131871882:distribution/EJMISXVGQ9693",
+        "arn:aws:cloudfront::598131871882:distribution/E1YDTTQ1PEWLAK"
       ]
     }
   ]
@@ -210,11 +210,11 @@ npm run build
 
 # Production
 aws s3 sync ./dist s3://family-foqos-app --delete
-aws cloudfront create-invalidation --distribution-id PRODUCTION_DISTRIBUTION_ID --paths "/*"
+aws cloudfront create-invalidation --distribution-id EJMISXVGQ9693 --paths "/*"
 
 # Staging
 aws s3 sync ./dist s3://staging-family-foqos-app --delete
-aws cloudfront create-invalidation --distribution-id STAGING_DISTRIBUTION_ID --paths "/*"
+aws cloudfront create-invalidation --distribution-id E1YDTTQ1PEWLAK --paths "/*"
 ```
 
 ## License
