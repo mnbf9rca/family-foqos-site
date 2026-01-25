@@ -2,29 +2,29 @@
 @import "tailwindcss";
 
 @theme {
-  /* Color Palette - Deep purple sanctuary with warm amber accents */
-  --color-void: #0a0812;
-  --color-abyss: #110e1a;
-  --color-deep: #1a1525;
-  --color-surface: #241d32;
-  --color-elevated: #2e2640;
+  /* Color Palette - Night Cabin: warm rust/amber on neutral dark */
+  --color-void: #1A1918;
+  --color-abyss: #121110;
+  --color-deep: #1E1D1C;
+  --color-surface: #252423;
+  --color-elevated: #302E2C;
 
-  --color-iris: #9b7bf7;
-  --color-iris-bright: #b49aff;
-  --color-iris-dim: #7a5cd9;
-  --color-iris-muted: #5a4299;
+  --color-iris: #C75D38;
+  --color-iris-bright: #E06D45;
+  --color-iris-dim: #A04A2C;
+  --color-iris-muted: #7A3A22;
 
-  --color-amber: #f5a623;
-  --color-amber-bright: #ffc857;
-  --color-amber-dim: #d4890f;
+  --color-amber: #D9A441;
+  --color-amber-bright: #EBB94F;
+  --color-amber-dim: #B8892E;
 
-  --color-rose: #ff6b9d;
-  --color-mint: #5ce1a8;
-  --color-sky: #5eb9ff;
+  --color-rose: #9A5A7A;
+  --color-mint: #7A9A7A;
+  --color-sky: #5A8A9A;
 
-  --color-text: #f4f0ff;
-  --color-text-secondary: #b8a8d4;
-  --color-text-muted: #7a6a96;
+  --color-text: #F5F2ED;
+  --color-text-secondary: #B8B2A8;
+  --color-text-muted: #7A756D;
 
   /* Typography */
   --font-display: 'Bricolage Grotesque', sans-serif;
@@ -228,7 +228,7 @@ body {
 .card:hover {
   border-color: var(--color-iris-muted);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -20px rgba(155, 123, 247, 0.3);
+  box-shadow: 0 20px 40px -20px rgba(199, 93, 56, 0.3);
 }
 
 /* Button styles */
