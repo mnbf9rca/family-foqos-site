@@ -1,0 +1,109 @@
+---
+// FAQ Section with expandable questions
+
+const faqs = [
+  {
+    question: "What is Family Foqos?",
+    answer: "Family Foqos is a focus and screen time management app built for families. It extends the original Foqos app with parent controls and lock codes. Parents can lock specific profiles on their children's devices so kids can activate focus sessions but can't change the rules - bringing intentional screen time to the whole family."
+  },
+  {
+    question: "How do lock codes work?",
+    answer: "Parents set a lock code that syncs across family devices via iCloud. When a profile is locked, children can still activate it and use it for focus sessions, but they can't edit the blocked apps, websites, or timer settings. Profiles themselves stay on each device - only the lock code is shared across the family."
+  },
+  {
+    question: "Is my family's data private?",
+    answer: "Absolutely. Family Foqos is privacy-first by design. All data stays on your devices and your private iCloud account. We don't run servers that store your data, we don't track usage patterns, and we don't sell any information. The app is fully open source, so you can verify this yourself."
+  },
+  {
+    question: "Do I need NFC tags or QR codes?",
+    answer: "No - NFC and QR features are optional but powerful. You can use Family Foqos entirely through the app interface. However, physical triggers like NFC tags and QR codes add a tangible ritual to focus sessions. Many families place QR codes in study areas or use NFC tags as focus 'keys' for children."
+  },
+  {
+    question: "What devices are supported?",
+    answer: "Family Foqos is available for iPhone and iPad running iOS 17 or later. NFC blocking requires an iPhone (iPads don't have NFC readers), but QR blocking and all other features work on both devices."
+  },
+  {
+    question: "Is Family Foqos free?",
+    answer: "Family Foqos will be free and open source, just like the original Foqos. There are no subscriptions, no ads, and no hidden fees. If you find value in the app, we encourage donations to Common Sense Media, an organization that helps families navigate the digital world."
+  },
+  {
+    question: "How is this different from Apple Screen Time?",
+    answer: "Apple Screen Time focuses on limits and restrictions. Family Foqos focuses on intentional focus sessions. With Screen Time, you set daily limits and hope your child doesn't find workarounds. With Family Foqos, you create purposeful focus profiles - homework time, bedtime, dinner - that feel less like punishment and more like positive habits. Plus, NFC/QR blocking adds a physical, ritual element that Screen Time can't match."
+  },
+  {
+    question: "Can children bypass locked profiles?",
+    answer: "Locked profiles require the parent passcode to modify or deactivate early. While no system is completely bypass-proof, Family Foqos is designed to make intentional focus the path of least resistance. Children can see their active profile and remaining time, but they cannot change blocked apps, websites, or timer durations without the parent code."
+  }
+];
+---
+
+<section id="faq" class="py-section relative">
+  <!-- Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-amber/10 to-transparent rounded-full blur-3xl -translate-x-1/2"></div>
+  </div>
+
+  <div class="container relative z-10">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/50 border border-elevated mb-6">
+        <span class="text-sm text-sky font-medium">FAQ</span>
+      </div>
+      <h2 class="reveal heading-lg mb-6">
+        Common<br />
+        <span class="gradient-text">questions</span>
+      </h2>
+      <p class="reveal body-lg text-text-secondary">
+        Everything you need to know about Family Foqos.
+        Can't find what you're looking for? Check our GitHub discussions.
+      </p>
+    </div>
+
+    <!-- FAQ items -->
+    <div class="max-w-3xl mx-auto space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="reveal faq-item" style={`transition-delay: ${index * 50}ms;`}>
+          <details class="group card overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+              <h3 class="heading-sm text-left pr-4">{faq.question}</h3>
+              <span class="flex-shrink-0 w-10 h-10 rounded-xl bg-elevated flex items-center justify-center transition-transform duration-300 group-open:rotate-45">
+                <svg class="w-5 h-5 text-iris" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+              </span>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-text-secondary leading-relaxed">{faq.answer}</p>
+            </div>
+          </details>
+        </div>
+      ))}
+    </div>
+
+    <!-- Additional help -->
+    <div class="reveal text-center mt-12">
+      <p class="text-text-muted mb-4">Still have questions?</p>
+      <a
+        href="https://github.com/mnbf9rca/family-foqos/discussions"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-secondary inline-flex items-center gap-2"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <span>Ask on GitHub Discussions</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  details[open] summary {
+    border-bottom: 1px solid var(--color-elevated);
+  }
+</style>

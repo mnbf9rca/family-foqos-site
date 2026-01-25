@@ -1,0 +1,177 @@
+---
+// Feature comparison table
+
+const features = [
+  { name: "NFC/QR Physical Blocking", familyFoqos: true, originalFoqos: true, screenTime: false, competitors: false },
+  { name: "Custom Profiles", familyFoqos: true, originalFoqos: true, screenTime: true, competitors: true },
+  { name: "Timer Mode", familyFoqos: true, originalFoqos: true, screenTime: true, competitors: true },
+  { name: "Website Blocking", familyFoqos: true, originalFoqos: true, screenTime: true, competitors: true },
+  { name: "Live Activities", familyFoqos: true, originalFoqos: true, screenTime: false, competitors: false },
+  { name: "Parent Controls", familyFoqos: true, originalFoqos: false, screenTime: true, competitors: true, highlight: true },
+  { name: "Child Mode", familyFoqos: true, originalFoqos: false, screenTime: true, competitors: true, highlight: true },
+  { name: "Lock Codes for Profiles", familyFoqos: true, originalFoqos: false, screenTime: false, competitors: false, highlight: true },
+  { name: "Shared Lock Codes via iCloud", familyFoqos: true, originalFoqos: false, screenTime: false, competitors: false, highlight: true },
+  { name: "Open Source", familyFoqos: true, originalFoqos: true, screenTime: false, competitors: false },
+  { name: "Privacy-First (No Tracking)", familyFoqos: true, originalFoqos: true, screenTime: true, competitors: false },
+  { name: "No Subscription Required", familyFoqos: true, originalFoqos: true, screenTime: true, competitors: false },
+];
+---
+
+<section id="compare" class="py-section relative">
+  <!-- Background -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-gradient-to-b from-iris/5 to-transparent"></div>
+  </div>
+
+  <div class="container relative z-10">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/50 border border-elevated mb-6">
+        <span class="text-sm text-mint font-medium">Comparison</span>
+      </div>
+      <h2 class="reveal heading-lg mb-6">
+        Why choose<br />
+        <span class="gradient-text">Family Foqos?</span>
+      </h2>
+      <p class="reveal body-lg text-text-secondary">
+        See how Family Foqos stacks up against the original Foqos, Apple Screen Time,
+        and other focus apps on the market.
+      </p>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="reveal overflow-x-auto -mx-4 px-4">
+      <div class="min-w-[800px]">
+        <table class="w-full">
+          <!-- Header -->
+          <thead>
+            <tr class="border-b border-elevated">
+              <th class="text-left py-4 px-4 text-text-muted font-normal text-sm">Feature</th>
+              <th class="py-4 px-4 text-center">
+                <div class="inline-flex flex-col items-center gap-2">
+                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-iris to-rose flex items-center justify-center">
+                    <span class="text-lg font-bold text-void">F</span>
+                  </div>
+                  <span class="text-sm font-semibold gradient-text">Family Foqos</span>
+                </div>
+              </th>
+              <th class="py-4 px-4 text-center">
+                <div class="inline-flex flex-col items-center gap-2">
+                  <div class="w-10 h-10 rounded-xl bg-iris/20 flex items-center justify-center">
+                    <span class="text-lg font-bold text-iris">F</span>
+                  </div>
+                  <span class="text-sm text-text-secondary">Original Foqos</span>
+                </div>
+              </th>
+              <th class="py-4 px-4 text-center">
+                <div class="inline-flex flex-col items-center gap-2">
+                  <div class="w-10 h-10 rounded-xl bg-surface flex items-center justify-center">
+                    <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span class="text-sm text-text-secondary">Screen Time</span>
+                </div>
+              </th>
+              <th class="py-4 px-4 text-center">
+                <div class="inline-flex flex-col items-center gap-2">
+                  <div class="w-10 h-10 rounded-xl bg-surface flex items-center justify-center">
+                    <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <span class="text-sm text-text-secondary">Others</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+
+          <!-- Body -->
+          <tbody>
+            {features.map((feature, index) => (
+              <tr
+                class={`border-b border-elevated/50 transition-colors hover:bg-surface/30 ${feature.highlight ? 'bg-iris/5' : ''}`}
+              >
+                <td class="py-4 px-4">
+                  <span class={`text-sm ${feature.highlight ? 'text-text font-medium' : 'text-text-secondary'}`}>
+                    {feature.name}
+                  </span>
+                  {feature.highlight && (
+                    <span class="ml-2 inline-block px-1.5 py-0.5 rounded text-[10px] font-bold bg-gradient-to-r from-rose to-amber text-void">
+                      NEW
+                    </span>
+                  )}
+                </td>
+                <td class="py-4 px-4 text-center">
+                  {feature.familyFoqos ? (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-mint/20">
+                      <svg class="w-5 h-5 text-mint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                  ) : (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-rose/20">
+                      <svg class="w-5 h-5 text-rose" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </span>
+                  )}
+                </td>
+                <td class="py-4 px-4 text-center">
+                  {feature.originalFoqos ? (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-mint/10">
+                      <svg class="w-5 h-5 text-mint/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                  ) : (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-elevated/50">
+                      <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </span>
+                  )}
+                </td>
+                <td class="py-4 px-4 text-center">
+                  {feature.screenTime ? (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-mint/10">
+                      <svg class="w-5 h-5 text-mint/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                  ) : (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-elevated/50">
+                      <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </span>
+                  )}
+                </td>
+                <td class="py-4 px-4 text-center">
+                  {feature.competitors ? (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-mint/10">
+                      <svg class="w-5 h-5 text-mint/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </span>
+                  ) : (
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-elevated/50">
+                      <svg class="w-5 h-5 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Bottom note -->
+    <p class="reveal text-center text-text-muted text-sm mt-8">
+      Family Foqos combines the best of the original Foqos with new family-focused features.
+    </p>
+  </div>
+</section>
