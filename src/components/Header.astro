@@ -1,0 +1,531 @@
+---
+// Header with navigation - glassmorphism aesthetic matching site design
+---
+
+<header class="header">
+  <div class="header-backdrop"></div>
+  <div class="header-glow"></div>
+
+  <div class="container">
+    <nav class="header-nav">
+      <!-- Logo -->
+      <a href="/" class="logo-link">
+        <div class="logo-wrapper">
+          <div class="logo-ring"></div>
+          <div class="logo-inner">
+            <img
+              src="/app-icon.png"
+              alt="Family Foqos"
+              class="logo-img"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+            />
+            <span class="logo-fallback">F</span>
+          </div>
+        </div>
+        <span class="logo-text">Family Foqos</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-links">
+        <a href="/#features" class="nav-link">Features</a>
+        <a href="/#how-it-works" class="nav-link">How It Works</a>
+        <a href="/#faq" class="nav-link">FAQ</a>
+        <a href="/support" class="nav-link">Support</a>
+        <a href="/privacy" class="nav-link">Privacy</a>
+        <a
+          href="https://github.com/mnbf9rca/family-foqos"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nav-link nav-link-github"
+        >
+          <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="/#waitlist" class="nav-cta">
+          <span>Get the App</span>
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <button
+        id="mobile-menu-toggle"
+        class="mobile-toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span class="hamburger">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <div id="mobile-menu" class="mobile-menu">
+    <div class="mobile-menu-inner">
+      <a href="/#features" class="mobile-link">Features</a>
+      <a href="/#how-it-works" class="mobile-link">How It Works</a>
+      <a href="/#faq" class="mobile-link">FAQ</a>
+      <a href="/support" class="mobile-link">Support</a>
+      <a href="/privacy" class="mobile-link">Privacy</a>
+      <a
+        href="https://github.com/mnbf9rca/family-foqos"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mobile-link mobile-link-github"
+      >
+        <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        GitHub
+      </a>
+      <div class="mobile-cta-wrapper">
+        <a href="/#waitlist" class="mobile-cta">
+          Get the App
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const header = document.querySelector('.header');
+
+  toggle?.addEventListener('click', () => {
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', (!isExpanded).toString());
+    menu?.classList.toggle('is-open');
+    header?.classList.toggle('menu-open');
+    document.body.style.overflow = isExpanded ? '' : 'hidden';
+  });
+
+  // Close menu when clicking a link
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('is-open');
+      header?.classList.remove('menu-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close menu on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.classList.contains('is-open')) {
+      menu.classList.remove('is-open');
+      header?.classList.remove('menu-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 72px;
+  }
+
+  @media (min-width: 768px) {
+    .header {
+      height: 80px;
+    }
+  }
+
+  /* Glassmorphism backdrop */
+  .header-backdrop {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 8, 18, 0.95) 0%,
+      rgba(10, 8, 18, 0.85) 100%
+    );
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(46, 38, 64, 0.5);
+  }
+
+  /* Subtle animated glow line */
+  .header-glow {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--color-iris-muted) 20%,
+      var(--color-iris) 50%,
+      var(--color-iris-muted) 80%,
+      transparent 100%
+    );
+    opacity: 0.6;
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+  }
+
+  .header-nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  @media (min-width: 768px) {
+    .header-nav {
+      height: 80px;
+    }
+  }
+
+  /* Logo */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .logo-link:hover {
+    transform: translateY(-1px);
+  }
+
+  .logo-link:hover .logo-ring {
+    transform: scale(1.05);
+  }
+
+  .logo-wrapper {
+    position: relative;
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--color-iris) 0%, var(--color-iris-dim) 50%, var(--color-rose) 100%);
+    padding: 1px;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+
+  .logo-inner {
+    position: absolute;
+    inset: 1px;
+    border-radius: 11px;
+    background: var(--color-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .logo-fallback {
+    display: none;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-iris-bright) 0%, var(--color-rose) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    display: none;
+  }
+
+  @media (min-width: 640px) {
+    .logo-text {
+      display: block;
+    }
+  }
+
+  /* Desktop Navigation */
+  .nav-links {
+    display: none;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+  }
+
+  .nav-link {
+    position: relative;
+    padding: 8px 14px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.25s var(--ease-out-expo);
+  }
+
+  .nav-link:hover {
+    color: var(--color-text);
+    background: rgba(155, 123, 247, 0.08);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-iris), var(--color-rose));
+    border-radius: 1px;
+    transform: translateX(-50%);
+    transition: width 0.25s var(--ease-out-expo);
+  }
+
+  .nav-link:hover::after {
+    width: calc(100% - 28px);
+  }
+
+  .nav-link-github {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .github-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .nav-cta {
+    position: relative;
+    margin-left: 8px;
+    padding: 10px 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--color-iris) 0%, var(--color-iris-dim) 100%);
+    overflow: hidden;
+    transition: all 0.3s var(--ease-out-expo);
+  }
+
+  .nav-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-iris-bright) 0%, var(--color-iris) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px -8px var(--color-iris);
+  }
+
+  .nav-cta:hover::before {
+    opacity: 1;
+  }
+
+  .nav-cta span {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Mobile toggle */
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+  }
+
+  .mobile-toggle:hover {
+    background: rgba(155, 123, 247, 0.1);
+  }
+
+  @media (min-width: 768px) {
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  .hamburger {
+    position: relative;
+    width: 22px;
+    height: 16px;
+  }
+
+  .hamburger-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 1px;
+    transition: all 0.3s var(--ease-out-expo);
+  }
+
+  .hamburger-line:nth-child(1) {
+    top: 0;
+  }
+
+  .hamburger-line:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .hamburger-line:nth-child(3) {
+    bottom: 0;
+  }
+
+  /* Hamburger animation */
+  .menu-open .hamburger-line:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  .menu-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+    transform: translateY(-50%) scaleX(0);
+  }
+
+  .menu-open .hamburger-line:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 8, 18, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s var(--ease-out-expo);
+  }
+
+  .mobile-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (max-width: 767px) {
+    .mobile-menu {
+      display: block;
+    }
+  }
+
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 4px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s var(--ease-out-expo) 0.1s;
+  }
+
+  .mobile-menu.is-open .mobile-menu-inner {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 16px 20px;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.25s var(--ease-out-expo);
+  }
+
+  .mobile-link:hover {
+    color: var(--color-text);
+    background: rgba(155, 123, 247, 0.1);
+    padding-left: 28px;
+  }
+
+  .mobile-link-github {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-link-github .github-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-cta-wrapper {
+    margin-top: 20px;
+    padding: 0 4px;
+  }
+
+  .mobile-cta {
+    display: block;
+    width: 100%;
+    padding: 18px 24px;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--color-iris) 0%, var(--color-iris-dim) 100%);
+    transition: all 0.3s var(--ease-out-expo);
+  }
+
+  .mobile-cta:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 32px -8px var(--color-iris);
+  }
+</style>
