@@ -58,10 +58,10 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy to S3 (staging)
-        run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_STAGING }} --delete
+        run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET_STAGING }} --delete
 
       - name: Invalidate CloudFront cache (staging)
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_STAGING }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID_STAGING }} --paths "/*"
 
   deploy-production:
     needs: build
@@ -85,7 +85,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Deploy to S3 (production)
-        run: aws s3 sync ./dist s3://${{ secrets.S3_BUCKET }} --delete
+        run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront cache (production)
-        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

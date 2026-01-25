@@ -185,20 +185,22 @@ Attach this permissions policy to the role (includes both production and staging
 }
 ```
 
-#### 3. GitHub Secrets
+#### 3. GitHub Configuration
 
-Add these secrets to your GitHub repository:
+**Secrets** (Settings → Secrets and variables → Actions → Secrets):
 
-**Shared:**
-- `AWS_ROLE_ARN` - The ARN of the IAM role (e.g., `arn:aws:iam::123456789012:role/GitHubActionsDeployRole`)
+| Secret | Description |
+|--------|-------------|
+| `AWS_ROLE_ARN` | IAM role ARN (e.g., `arn:aws:iam::123456789012:role/GitHubActionsDeployRole`) |
 
-**Production (family-foqos.app):**
-- `S3_BUCKET` - Production S3 bucket name
-- `CLOUDFRONT_DISTRIBUTION_ID` - Production CloudFront distribution ID
+**Variables** (Settings → Secrets and variables → Actions → Variables):
 
-**Staging (staging.family-foqos.app):**
-- `S3_BUCKET_STAGING` - Staging S3 bucket name
-- `CLOUDFRONT_DISTRIBUTION_ID_STAGING` - Staging CloudFront distribution ID
+| Variable | Value |
+|----------|-------|
+| `S3_BUCKET` | `family-foqos-app` |
+| `CLOUDFRONT_DISTRIBUTION_ID` | `EJMISXVGQ9693` |
+| `S3_BUCKET_STAGING` | `staging-family-foqos-app` |
+| `CLOUDFRONT_DISTRIBUTION_ID_STAGING` | `E1YDTTQ1PEWLAK` |
 
 ## Deployment
 
