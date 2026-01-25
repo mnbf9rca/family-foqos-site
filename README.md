@@ -185,18 +185,13 @@ Attach this permissions policy to the role (includes both production and staging
 }
 ```
 
-#### 3. GitHub Configuration
+#### 3. GitHub Variables
 
-**Secrets** (Settings → Secrets and variables → Actions → Secrets):
-
-| Secret | Description |
-|--------|-------------|
-| `AWS_ROLE_ARN` | IAM role ARN (e.g., `arn:aws:iam::123456789012:role/GitHubActionsDeployRole`) |
-
-**Variables** (Settings → Secrets and variables → Actions → Variables):
+Add these in Settings → Secrets and variables → Actions → Variables:
 
 | Variable | Value |
 |----------|-------|
+| `AWS_ROLE_ARN` | `arn:aws:iam::598131871882:role/GHA-FamilyFoqosSite` |
 | `S3_BUCKET` | `family-foqos-app` |
 | `CLOUDFRONT_DISTRIBUTION_ID` | `EJMISXVGQ9693` |
 | `S3_BUCKET_STAGING` | `staging-family-foqos-app` |
