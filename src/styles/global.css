@@ -2,29 +2,29 @@
 @import "tailwindcss";
 
 @theme {
-  /* Color Palette - Night Cabin: warm rust/amber on neutral dark */
-  --color-void: #1A1918;
-  --color-abyss: #121110;
-  --color-deep: #1E1D1C;
-  --color-surface: #252423;
-  --color-elevated: #302E2C;
+  /* Color Palette - Scandinavian Botanical: forest greens on warm cream */
+  --color-void: #FAF7F2;
+  --color-abyss: #F0EBE3;
+  --color-deep: #E8E2D9;
+  --color-surface: #FFFFFF;
+  --color-elevated: #FFFFFF;
 
-  --color-iris: #C75D38;
-  --color-iris-bright: #E06D45;
-  --color-iris-dim: #A04A2C;
-  --color-iris-muted: #7A3A22;
+  --color-iris: #2D5A3D;
+  --color-iris-bright: #3A7A4D;
+  --color-iris-dim: #1E3D2A;
+  --color-iris-muted: #4A7A5A;
 
-  --color-amber: #D9A441;
-  --color-amber-bright: #EBB94F;
-  --color-amber-dim: #B8892E;
+  --color-amber: #C95D3C;
+  --color-amber-bright: #E07356;
+  --color-amber-dim: #A84A2D;
 
-  --color-rose: #9A5A7A;
-  --color-mint: #7A9A7A;
-  --color-sky: #5A8A9A;
+  --color-rose: #D4A03D;
+  --color-mint: #5B9A6D;
+  --color-sky: #5B8A9A;
 
-  --color-text: #F5F2ED;
-  --color-text-secondary: #B8B2A8;
-  --color-text-muted: #7A756D;
+  --color-text: #2A2520;
+  --color-text-secondary: #6B6158;
+  --color-text-muted: #9B9487;
 
   /* Typography */
   --font-display: 'Bricolage Grotesque', sans-serif;
@@ -228,7 +228,7 @@ body {
 .card:hover {
   border-color: var(--color-iris-muted);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -20px rgba(199, 93, 56, 0.3);
+  box-shadow: 0 20px 40px -20px rgba(45, 90, 61, 0.2);
 }
 
 /* Button styles */
