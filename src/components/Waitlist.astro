@@ -1,5 +1,5 @@
 ---
-// Waitlist / Coming Soon CTA section
+// App Store download CTA section
 ---
 
 <section id="waitlist" class="py-section relative overflow-hidden">
@@ -32,28 +32,26 @@
       </h2>
 
       <p class="reveal body-lg text-text-secondary mb-10 max-w-lg mx-auto">
-        Family Foqos is currently in development. Join the waitlist to be notified
-        when we launch on the App Store.
+        Family Foqos is currently in development. Download it from the App Store
+        to bring intentional screen time to your family.
       </p>
 
-      <!-- Email signup form -->
+      <!-- App Store download button -->
       <div class="reveal max-w-md mx-auto mb-8">
-        <form class="flex flex-col sm:flex-row gap-3" action="#" method="POST">
-          <div class="flex-1 relative">
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-              class="w-full px-5 py-4 bg-surface/80 border border-elevated rounded-xl text-text placeholder:text-text-muted focus:outline-none focus:border-iris transition-colors backdrop-blur-sm"
-            />
+        <a
+          href="#"
+          class="inline-flex items-center gap-3 px-6 py-4 bg-surface/80 border border-elevated rounded-2xl backdrop-blur-sm hover:border-iris hover:bg-surface transition-all group"
+        >
+          <svg class="w-10 h-10 text-text" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+          </svg>
+          <div class="text-left">
+            <p class="text-xs text-text-muted uppercase tracking-wide">Download on the</p>
+            <p class="text-lg font-semibold text-text group-hover:text-iris transition-colors">App Store</p>
           </div>
-          <button type="submit" class="btn-primary whitespace-nowrap">
-            <span>Notify Me</span>
-          </button>
-        </form>
-        <p class="text-text-muted text-xs mt-3">
-          We'll only email you once when we launch. No spam, ever.
+        </a>
+        <p class="text-text-muted text-xs mt-4">
+          Coming soon - link will be active at launch
         </p>
       </div>
 
