@@ -60,6 +60,12 @@ jobs:
       - name: Deploy to S3 (staging)
         run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET_STAGING }} --delete
 
+      - name: Set content-type for apple-app-site-association (staging)
+        run: |
+          aws s3 cp s3://${{ vars.S3_BUCKET_STAGING }}/.well-known/apple-app-site-association \
+            s3://${{ vars.S3_BUCKET_STAGING }}/.well-known/apple-app-site-association \
+            --content-type application/json --metadata-directive REPLACE
+
       - name: Invalidate CloudFront cache (staging)
         run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID_STAGING }} --paths "/*"
 
@@ -86,6 +92,12 @@ jobs:
 
       - name: Deploy to S3 (production)
         run: aws s3 sync ./dist s3://${{ vars.S3_BUCKET }} --delete
+
+      - name: Set content-type for apple-app-site-association (production)
+        run: |
+          aws s3 cp s3://${{ vars.S3_BUCKET }}/.well-known/apple-app-site-association \
+            s3://${{ vars.S3_BUCKET }}/.well-known/apple-app-site-association \
+            --content-type application/json --metadata-directive REPLACE
 
       - name: Invalidate CloudFront cache (production)
         run: aws cloudfront create-invalidation --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"

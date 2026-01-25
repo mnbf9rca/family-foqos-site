@@ -1,0 +1,21 @@
+{
+"applinks": {
+    "apps": [],
+    "details": [
+    {
+        "appIDs": [
+        "BU7526J4QY.com.cynexia.family-foqos"
+        ],
+        "paths": [
+        "/profile/*",
+        "/*"
+        ],
+        "components": [
+        {
+            "/": "/profile/*"
+        }
+        ]
+    }
+    ]
+}
+}
