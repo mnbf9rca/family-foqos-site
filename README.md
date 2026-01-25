@@ -114,18 +114,45 @@ Place app screenshots in `public/screenshots/`:
 2. Create A record for `www.family-foqos.app` → CloudFront distribution (Alias)
 3. Optionally redirect `familyfoqos.app` to `family-foqos.app`
 
-### GitHub Secrets
+### AWS OIDC Setup for GitHub Actions
 
-Add these secrets to your GitHub repository:
+GitHub Actions authenticates to AWS using OIDC (no static credentials needed).
 
-- `AWS_ACCESS_KEY_ID` - IAM user access key
-- `AWS_SECRET_ACCESS_KEY` - IAM user secret key
-- `S3_BUCKET` - S3 bucket name (e.g., `family-foqos-app`)
-- `CLOUDFRONT_DISTRIBUTION_ID` - CloudFront distribution ID
+#### 1. Create the OIDC Identity Provider
 
-### IAM Policy
+In AWS IAM Console → Identity providers → Add provider:
+- Provider type: OpenID Connect
+- Provider URL: `https://token.actions.githubusercontent.com`
+- Audience: `sts.amazonaws.com`
 
-Create an IAM user with this policy for GitHub Actions:
+#### 2. Create IAM Role
+
+Create an IAM role with the following trust policy (replace `ACCOUNT_ID` and `your-org/your-repo`):
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::ACCOUNT_ID:oidc-provider/token.actions.githubusercontent.com"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+        },
+        "StringLike": {
+          "token.actions.githubusercontent.com:sub": "repo:your-org/your-repo:*"
+        }
+      }
+    }
+  ]
+}
+```
+
+Attach this permissions policy to the role (includes both production and staging):
 
 ```json
 {
@@ -141,27 +168,56 @@ Create an IAM user with this policy for GitHub Actions:
       ],
       "Resource": [
         "arn:aws:s3:::family-foqos-app",
-        "arn:aws:s3:::family-foqos-app/*"
+        "arn:aws:s3:::family-foqos-app/*",
+        "arn:aws:s3:::staging-family-foqos-app",
+        "arn:aws:s3:::staging-family-foqos-app/*"
       ]
     },
     {
       "Effect": "Allow",
       "Action": "cloudfront:CreateInvalidation",
-      "Resource": "arn:aws:cloudfront::ACCOUNT_ID:distribution/DISTRIBUTION_ID"
+      "Resource": [
+        "arn:aws:cloudfront::ACCOUNT_ID:distribution/PRODUCTION_DISTRIBUTION_ID",
+        "arn:aws:cloudfront::ACCOUNT_ID:distribution/STAGING_DISTRIBUTION_ID"
+      ]
     }
   ]
 }
 ```
 
+#### 3. GitHub Secrets
+
+Add these secrets to your GitHub repository:
+
+**Shared:**
+- `AWS_ROLE_ARN` - The ARN of the IAM role (e.g., `arn:aws:iam::123456789012:role/GitHubActionsDeployRole`)
+
+**Production (family-foqos.app):**
+- `S3_BUCKET` - Production S3 bucket name
+- `CLOUDFRONT_DISTRIBUTION_ID` - Production CloudFront distribution ID
+
+**Staging (staging.family-foqos.app):**
+- `S3_BUCKET_STAGING` - Staging S3 bucket name
+- `CLOUDFRONT_DISTRIBUTION_ID_STAGING` - Staging CloudFront distribution ID
+
 ## Deployment
 
-Deployments are automatic via GitHub Actions on push to `main`.
+Deployments are automatic via GitHub Actions:
+
+- **Pull requests** → Deploy to `staging.family-foqos.app`
+- **Merge to main** → Deploy to `family-foqos.app`
 
 Manual deployment:
 ```bash
 npm run build
+
+# Production
 aws s3 sync ./dist s3://family-foqos-app --delete
-aws cloudfront create-invalidation --distribution-id DISTRIBUTION_ID --paths "/*"
+aws cloudfront create-invalidation --distribution-id PRODUCTION_DISTRIBUTION_ID --paths "/*"
+
+# Staging
+aws s3 sync ./dist s3://staging-family-foqos-app --delete
+aws cloudfront create-invalidation --distribution-id STAGING_DISTRIBUTION_ID --paths "/*"
 ```
 
 ## License
