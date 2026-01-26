@@ -183,6 +183,129 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </section>
 
+          <!-- Operating Modes Section -->
+          <section class="space-y-6">
+            <h2 class="heading-md text-text flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-sky/20 flex items-center justify-center">
+                <svg class="w-5 h-5 text-sky" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              Operating Modes
+            </h2>
+
+            <p class="body-lg text-text">
+              Family Foqos automatically detects which mode to use based on your device's Apple Family Sharing configuration. No manual setup required.
+            </p>
+
+            <!-- Mode Cards -->
+            <div class="grid gap-4">
+              <!-- Individual Mode -->
+              <div class="card p-6 space-y-3 border-iris/30">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-iris/20 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-iris" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="heading-sm text-text">Individual Mode</h3>
+                    <p class="text-sm text-iris">For devices not part of Apple Family Sharing</p>
+                  </div>
+                </div>
+                <p>
+                  The full Foqos experience for personal use. Create and manage your own profiles, set timers, and build focus habits. No lock codes or parental restrictions - you're in complete control of your own focus.
+                </p>
+              </div>
+
+              <!-- Parent Mode -->
+              <div class="card p-6 space-y-3 border-amber/30">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-amber/20 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="heading-sm text-text">Parent Mode</h3>
+                    <p class="text-sm text-amber">For adults/organizers in Family Sharing</p>
+                  </div>
+                </div>
+                <p>
+                  Full control over family settings. On your child's device, you can toggle any profile or location to "locked" status - this on-device approach encourages conversations with your teen about their screen time and helps ensure they're safe. Locked items require the family code to modify.
+                </p>
+              </div>
+
+              <!-- Child Mode -->
+              <div class="card p-6 space-y-3 border-mint/30">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-mint/20 flex items-center justify-center">
+                    <svg class="w-5 h-5 text-mint" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="heading-sm text-text">Child Mode</h3>
+                    <p class="text-sm text-mint">For child accounts in Family Sharing</p>
+                  </div>
+                </div>
+                <p>
+                  The full app experience with optional parental boundaries. You can create your own profiles and manage your focus sessions. Some profiles or locations may be locked by a parent - these require the family code to edit or disable. The lock code syncs automatically via iCloud.
+                </p>
+              </div>
+            </div>
+
+            <!-- Permissions Table -->
+            <div class="card p-6 space-y-4">
+              <h3 class="heading-sm text-text">Permissions by Mode</h3>
+              <div class="overflow-x-auto -mx-2">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-elevated">
+                      <th class="text-left py-3 px-2 text-text-muted font-normal">Permission</th>
+                      <th class="py-3 px-2 text-center text-iris font-medium">Individual</th>
+                      <th class="py-3 px-2 text-center text-amber font-medium">Parent</th>
+                      <th class="py-3 px-2 text-center text-mint font-medium">Child</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-b border-elevated/50">
+                      <td class="py-3 px-2 text-text-secondary">Set lock code</td>
+                      <td class="py-3 px-2 text-center text-text-muted">—</td>
+                      <td class="py-3 px-2 text-center text-amber">Yes</td>
+                      <td class="py-3 px-2 text-center text-text-muted">—</td>
+                    </tr>
+                    <tr class="border-b border-elevated/50">
+                      <td class="py-3 px-2 text-text-secondary">Create unlocked profiles</td>
+                      <td class="py-3 px-2 text-center text-iris">Yes</td>
+                      <td class="py-3 px-2 text-center text-amber">Yes</td>
+                      <td class="py-3 px-2 text-center text-mint">Yes</td>
+                    </tr>
+                    <tr class="border-b border-elevated/50">
+                      <td class="py-3 px-2 text-text-secondary">Lock profiles (on child's device)</td>
+                      <td class="py-3 px-2 text-center text-text-muted">—</td>
+                      <td class="py-3 px-2 text-center text-amber">Yes</td>
+                      <td class="py-3 px-2 text-center text-text-muted">—</td>
+                    </tr>
+                    <tr class="border-b border-elevated/50">
+                      <td class="py-3 px-2 text-text-secondary">Edit locked profiles</td>
+                      <td class="py-3 px-2 text-center text-text-muted">—</td>
+                      <td class="py-3 px-2 text-center text-amber">Yes</td>
+                      <td class="py-3 px-2 text-center text-mint">Requires code</td>
+                    </tr>
+                    <tr>
+                      <td class="py-3 px-2 text-text-secondary">Blocked by locked profiles</td>
+                      <td class="py-3 px-2 text-center text-text-muted">—</td>
+                      <td class="py-3 px-2 text-center text-text-muted">No</td>
+                      <td class="py-3 px-2 text-center text-mint">Yes</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
           <!-- Getting Help Section -->
           <section class="space-y-6">
             <h2 class="heading-md text-text flex items-center gap-3">

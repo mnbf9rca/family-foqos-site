@@ -18,3 +18,7 @@ Avoid generic AI-generated aesthetics:
 
 Interpret creatively and make unexpected choices that feel genuinely designed for the context. Vary between light and dark themes, different fonts, different aesthetics. You still tend to converge on common choices (Space Grotesk, for example) across generations. Avoid this: it is critical that you think outside the box!
 ```
+
+Never use emdash (`—`), use spaced dash (` - `) instead
+
+Never commit directly to main. Always create a feature branch for changes.
