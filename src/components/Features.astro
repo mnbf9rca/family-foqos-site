@@ -82,6 +82,12 @@ const newFeatures = [
     title: "Location Restrictions",
     description: "Set where profiles can be stopped - home, school, or anywhere. Location is only checked when stopping, never continuously tracked.",
     color: "sky"
+  },
+  {
+    icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>`,
+    title: "Block Everywhere",
+    description: "Your profiles sync across all your devices. When blocking is on, it's on everywhere — no escape hatch.",
+    color: "mint"
   }
 ];
 
@@ -130,7 +136,7 @@ const colorClasses = {
     <!-- Section header -->
     <div class="text-center max-w-3xl mx-auto mb-16">
       <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface/50 border border-elevated mb-6">
-        <span class="text-sm text-iris font-medium">13 Features</span>
+        <span class="text-sm text-iris font-medium">14 Features</span>
       </div>
       <h2 class="reveal heading-lg mb-6">
         Everything you need for<br />
@@ -149,7 +155,7 @@ const colorClasses = {
           <span class="text-void font-bold text-sm">F</span>
         </div>
         <h3 class="heading-sm text-text">New in Family Foqos</h3>
-        <span class="px-2 py-0.5 rounded-full bg-gradient-to-r from-rose to-amber text-xs font-bold text-void">4 NEW</span>
+        <span class="px-2 py-0.5 rounded-full bg-gradient-to-r from-rose to-amber text-xs font-bold text-void">5 NEW</span>
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {newFeatures.map((feature, index) => {

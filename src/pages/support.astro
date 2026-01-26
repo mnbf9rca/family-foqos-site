@@ -183,7 +183,7 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </section>
 
-          <!-- Operating Modes Section -->
+<!-- Operating Modes Section -->
           <section class="space-y-6">
             <h2 class="heading-md text-text flex items-center gap-3">
               <div class="w-10 h-10 rounded-xl bg-sky/20 flex items-center justify-center">
@@ -303,6 +303,38 @@ import Layout from '../layouts/Layout.astro';
                   </tbody>
                 </table>
               </div>
+            </div>
+          </section>
+
+          <!-- Device Sync Section -->
+          <section class="space-y-6">
+            <h2 class="heading-md text-text flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-sky/20 flex items-center justify-center">
+                <svg class="w-5 h-5 text-sky" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+                </svg>
+              </div>
+              Device Sync
+            </h2>
+
+            <p class="body-lg text-text">
+              Keep your focus profiles in sync across your iPhone and iPad. When blocking is active on one device, it's active everywhere.
+            </p>
+
+            <div class="card p-6 space-y-4 border-sky/30">
+              <h3 class="heading-sm text-text">Block Everywhere</h3>
+              <p>
+                Device sync ensures there's no escape hatch - you can't just switch to another device to cheat. Enable sync in <strong class="text-text">Settings → Device Sync</strong> and your profiles, schedules, and blocking status will stay in sync automatically via iCloud.
+              </p>
+              <a
+                href="/sync"
+                class="inline-flex items-center gap-2 text-sky hover:text-sky/80 transition-colors font-medium"
+              >
+                Learn more about Device Sync
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
             </div>
           </section>
 
