@@ -1,26 +1,29 @@
 # Family Foqos Website
 
-Marketing website for [Family Foqos](https://github.com/mnbf9rca/family-foqos), a family-focused screen time and focus management iOS app.
+Marketing and support website for [Family Foqos](https://github.com/mnbf9rca/family-foqos), a screen time and focus app for iPhone and iPad, with App Store download links, privacy information, and device sync guidance.
 
 **Live site**: https://family-foqos.app
 
 ## Tech Stack
 
-- **Framework**: [Astro](https://astro.build) with static site generation
-- **Styling**: [Tailwind CSS](https://tailwindcss.com) v4
-- **Hosting**: AWS S3 + CloudFront
-- **CI/CD**: GitHub Actions
+- **Framework**: [Astro](https://astro.build) 5 with static site generation
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) 4 via its Vite plugin
+- **Build runtime**: Node.js 24 and npm
+- **Hosting**: Cloudflare Pages
+- **CI/CD**: GitHub Actions builds; Cloudflare GitHub integration deploys
 
 ## Development
 
+Use Node.js 24. Run these commands from the repository root:
+
 ```bash
-# Install dependencies
-npm install
+# Install locked dependencies
+npm ci
 
 # Start development server
 npm run dev
 
-# Build for production
+# Build the static site into dist/
 npm run build
 
 # Preview production build
@@ -29,194 +32,54 @@ npm run preview
 
 ## Project Structure
 
-```
+```text
 src/
 ├── components/
-│   ├── Hero.astro          # Hero section with app branding
-│   ├── Features.astro      # 12-feature grid
-│   ├── HowItWorks.astro    # 3-step setup guide
 │   ├── Comparison.astro    # Feature comparison table
+│   ├── Download.astro      # App Store download links
 │   ├── FAQ.astro           # Expandable FAQ section
-│   ├── Waitlist.astro      # Email signup CTA
-│   └── Footer.astro        # Footer with links
+│   ├── Features.astro      # App features
+│   ├── Footer.astro        # Footer with links
+│   ├── Header.astro        # Shared navigation
+│   ├── Hero.astro          # App branding and screenshot
+│   └── HowItWorks.astro    # Setup guide
 ├── layouts/
-│   └── Layout.astro        # Base layout with meta tags
+│   └── Layout.astro        # Shared page layout and metadata
 ├── pages/
-│   └── index.astro         # Main page
+│   ├── index.astro         # Home page
+│   ├── privacy.astro       # Privacy policy
+│   ├── support.astro       # Support and usage guidance
+│   ├── sync.astro          # Device sync guidance
+│   └── tag.astro           # App profile link landing page
 └── styles/
-    └── global.css          # Global styles and Tailwind config
+    └── global.css          # Global styles and Tailwind theme
+public/
+├── _headers               # Cloudflare Pages response headers
+├── _redirects             # Profile and navigation link rewrites
+├── .well-known/
+│   └── apple-app-site-association
+└── ...                    # Screenshot, app icons, favicons, and manifest
 ```
 
 ## Screenshots
 
-Place app screenshots in `public/screenshots/`:
-- `home-dashboard.png` - Home dashboard with a profile visible
-- `parent-dashboard.png` - Parent dashboard showing family controls
-- `child-locked.png` - Child view with locked profile indicator
-- `strategy-selection.png` - NFC/QR blocking strategy selection screen
+The hero uses `public/family-controls.PNG`. Replace that file to update the screenshot; preserve the filename's case.
 
-## AWS Setup
+## Cloudflare Pages
 
-### Prerequisites
+The `family-foqos-site` project deploys automatically through the Cloudflare GitHub integration connected to `mnbf9rca/family-foqos-site`.
 
-1. AWS Account with access to S3, CloudFront, ACM, and Route 53
-2. Domain configured: `family-foqos.app`
+- **Production branch**: `main`
+- **Build command**: `npm run build`
+- **Output directory**: `dist`
+- **Environment variable**: `NODE_VERSION=24`
+- **Custom domains**: `family-foqos.app` and `www.family-foqos.app`
+- **Pull requests**: Each PR gets a preview deployment and a bot comment with its URL.
 
-### S3 Bucket Setup
+GitHub Actions only checks the build. Astro copies `public/_headers` into `dist/_headers`, where Pages reads the rule that serves `/.well-known/apple-app-site-association` with `Content-Type: application/json`.
 
-1. Create an S3 bucket (e.g., `family-foqos-app`)
-2. Enable static website hosting
-3. Set index document to `index.html`
-4. Set error document to `index.html` (for SPA-style 404 handling)
-5. Bucket policy for CloudFront access:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowCloudFrontAccess",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "cloudfront.amazonaws.com"
-      },
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::family-foqos-app/*",
-      "Condition": {
-        "StringEquals": {
-          "AWS:SourceArn": "arn:aws:cloudfront::598131871882:distribution/DISTRIBUTION_ID"
-        }
-      }
-    }
-  ]
-}
-```
-
-### SSL Certificate (ACM)
-
-1. Request a certificate in ACM (eu-west-2 region for CloudFront)
-2. Add domain names: `family-foqos.app`, `www.family-foqos.app`
-3. Validate via DNS (add CNAME records to Route 53)
-
-### CloudFront Distribution
-
-1. Create distribution with S3 origin
-2. Use Origin Access Control (OAC) for S3 access
-3. Redirect HTTP to HTTPS
-4. Attach ACM certificate
-5. Set alternate domain names: `family-foqos.app`, `www.family-foqos.app`
-6. Default root object: `index.html`
-7. Custom error responses: 404 → `/index.html` with 200 status
-
-### Route 53 DNS
-
-1. Create A record for `family-foqos.app` → CloudFront distribution (Alias)
-2. Create A record for `www.family-foqos.app` → CloudFront distribution (Alias)
-3. Optionally redirect `familyfoqos.app` to `family-foqos.app`
-
-### AWS OIDC Setup for GitHub Actions
-
-GitHub Actions authenticates to AWS using OIDC (no static credentials needed).
-
-#### 1. Create the OIDC Identity Provider
-
-In AWS IAM Console → Identity providers → Add provider:
-- Provider type: OpenID Connect
-- Provider URL: `https://token.actions.githubusercontent.com`
-- Audience: `sts.amazonaws.com`
-
-#### 2. Create IAM Role
-
-Create an IAM role with the following trust policy:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::598131871882:oidc-provider/token.actions.githubusercontent.com"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-        },
-        "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:mnbf9rca/family-foqos-site:*"
-        }
-      }
-    }
-  ]
-}
-```
-
-Attach this permissions policy to the role (includes both production and staging):
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:DeleteObject",
-        "s3:ListBucket"
-      ],
-      "Resource": [
-        "arn:aws:s3:::family-foqos-app",
-        "arn:aws:s3:::family-foqos-app/*",
-        "arn:aws:s3:::staging-family-foqos-app",
-        "arn:aws:s3:::staging-family-foqos-app/*"
-      ]
-    },
-    {
-      "Effect": "Allow",
-      "Action": "cloudfront:CreateInvalidation",
-      "Resource": [
-        "arn:aws:cloudfront::598131871882:distribution/EJMISXVGQ9693",
-        "arn:aws:cloudfront::598131871882:distribution/E1YDTTQ1PEWLAK"
-      ]
-    }
-  ]
-}
-```
-
-#### 3. GitHub Variables
-
-Add these in Settings → Secrets and variables → Actions → Variables:
-
-| Variable | Value |
-|----------|-------|
-| `AWS_ROLE_ARN` | `arn:aws:iam::598131871882:role/GHA-FamilyFoqosSite` |
-| `S3_BUCKET` | `family-foqos-app` |
-| `CLOUDFRONT_DISTRIBUTION_ID` | `EJMISXVGQ9693` |
-| `S3_BUCKET_STAGING` | `staging-family-foqos-app` |
-| `CLOUDFRONT_DISTRIBUTION_ID_STAGING` | `E1YDTTQ1PEWLAK` |
-
-## Deployment
-
-Deployments are automatic via GitHub Actions:
-
-- **Pull requests** → Deploy to `staging.family-foqos.app`
-- **Merge to main** → Deploy to `family-foqos.app`
-
-Manual deployment:
-```bash
-npm run build
-
-# Production
-aws s3 sync ./dist s3://family-foqos-app --delete
-aws cloudfront create-invalidation --distribution-id EJMISXVGQ9693 --paths "/*"
-
-# Staging
-aws s3 sync ./dist s3://staging-family-foqos-app --delete
-aws cloudfront create-invalidation --distribution-id E1YDTTQ1PEWLAK --paths "/*"
-```
+`public/_redirects` serves the `/tag/` landing page for `/profile/*` and `/navigate/*` with 200 rewrites that preserve the original URL.
 
 ## License
 
-MIT License - see the main [Family Foqos](https://github.com/mnbf9rca/family-foqos) repository.
+MIT License - see [LICENSE](LICENSE).
