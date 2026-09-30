@@ -49,11 +49,13 @@ src/
 │   ├── index.astro         # Home page
 │   ├── privacy.astro       # Privacy policy
 │   ├── support.astro       # Support and usage guidance
-│   └── sync.astro          # Device sync guidance
+│   ├── sync.astro          # Device sync guidance
+│   └── tag.astro           # App profile link landing page
 └── styles/
     └── global.css          # Global styles and Tailwind theme
 public/
 ├── _headers               # Cloudflare Pages response headers
+├── _redirects             # Profile and navigation link rewrites
 ├── .well-known/
 │   └── apple-app-site-association
 └── ...                    # Screenshot, app icons, favicons, and manifest
@@ -75,6 +77,8 @@ The `family-foqos-site` project deploys automatically through the Cloudflare Git
 - **Pull requests**: Each PR gets a preview deployment and a bot comment with its URL.
 
 GitHub Actions only checks the build. Astro copies `public/_headers` into `dist/_headers`, where Pages reads the rule that serves `/.well-known/apple-app-site-association` with `Content-Type: application/json`.
+
+`public/_redirects` serves the `/tag/` landing page for `/profile/*` and `/navigate/*` with 200 rewrites that preserve the original URL.
 
 ## License
 
