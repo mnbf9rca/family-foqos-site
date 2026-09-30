@@ -62,7 +62,7 @@ The `family-foqos-site` project deploys automatically through the Cloudflare Git
 - **Production branch**: `main`
 - **Build command**: `npm run build`
 - **Output directory**: `dist`
-- **Environment variable**: `NODE_VERSION=22`
+- **Environment variable**: `NODE_VERSION=24`
 - **Custom domains**: `family-foqos.app` and `www.family-foqos.app`
 - **Pull requests**: Each PR gets a preview deployment and a bot comment with its URL, replacing the staging environment.
 
