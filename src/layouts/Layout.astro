@@ -5,9 +5,12 @@ import Header from '../components/Header.astro';
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title, description = "Focus for the whole family. Family Foqos brings NFC and QR blocking, parent controls, and locked profiles to help your family focus together." } = Astro.props;
+const { title, description = "Focus for the whole family. Family Foqos brings NFC and QR blocking, parent controls, and locked profiles to help your family focus together.", noindex = false } = Astro.props;
+
+const pageUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -16,18 +19,23 @@ const { title, description = "Focus for the whole family. Family Foqos brings NF
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={pageUrl} />}
+    <link rel="author" href="https://blog.cynexia.com/pages/about" />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://family-foqos.app" />
+    <meta property="og:site_name" content="Family Foqos" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:url" content={pageUrl} />
     <meta property="og:image" content="https://family-foqos.app/og-image.png" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://family-foqos.app/og-image.png" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -42,6 +50,7 @@ const { title, description = "Focus for the whole family. Family Foqos brings NF
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet" />
+    <slot name="head" />
   </head>
   <body class="overflow-x-hidden">
     <!-- Background ambient effects -->
