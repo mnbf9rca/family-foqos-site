@@ -7,9 +7,26 @@ import Comparison from '../components/Comparison.astro';
 import FAQ from '../components/FAQ.astro';
 import Download from '../components/Download.astro';
 import Footer from '../components/Footer.astro';
+
+const appJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  name: 'Family Foqos',
+  url: 'https://family-foqos.app/',
+  description: 'Focus for the whole family. NFC and QR blocking, parent controls, and locked profiles for iPhone and iPad.',
+  operatingSystem: 'iOS',
+  applicationCategory: 'UtilitiesApplication',
+  image: 'https://family-foqos.app/og-image.png',
+  installUrl: 'https://apps.apple.com/us/app/family-foqos/id6758113229',
+  sameAs: ['https://apps.apple.com/us/app/family-foqos/id6758113229', 'https://github.com/mnbf9rca/family-foqos'],
+  featureList: ['NFC Blocking', 'QR Blocking', 'Parent Mode', 'Child Mode', 'Shared Lock Codes', 'Location Restrictions', 'Block Everywhere'],
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  author: { '@type': 'Person', name: 'Rob Aleck', url: 'https://blog.cynexia.com/pages/about' },
+};
 ---
 
 <Layout title="Family Foqos - Focus for the Whole Family">
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(appJsonLd)} />
   <main>
     <Hero />
     <Features />
